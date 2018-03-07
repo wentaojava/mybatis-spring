@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="dao.EmployeeDao">
+
+ <insert id="save" parameterType="entity.Employee">
+ INSERT INTO EMPS (ENAME,JOB,MGR) 
+ VALUES (#{ename},#{job},#{mgr})
+ </insert>
+
+<select id="findAll" resultType="entity.Employee">
+SELECT * FROM EMPS WHERE empno>118                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+</select>
+
+<!-- 使用resultMap解决表的字段名与实体类名不一致的问题 -->
+<resultMap type="entity.emp" id="empResultMap">
+	<!-- 只需要列出来不一致的属性 -->
+<result property="id" column="empno"/>
+<result property="name" column="ename"/>
+</resultMap>
+<select id="findById3" parameterType="int"
+resultMap="empResultMap">
+SELECT * FROM EMPS WHERE empno=#{id}  
+</select>
+
+</mapper>
